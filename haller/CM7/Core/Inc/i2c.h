@@ -8,6 +8,10 @@ extern "C" {
 #include <stdint.h>
 #include "stm32h745xx.h"
 
+void I2C1_Master_Init(void);
+void I2C1_Master_Write(uint8_t addr, uint32_t *msg, uint8_t size);
+void I2C1_Master_Read(uint8_t addr, uint32_t *buf, uint8_t size);
+
 #ifdef __cplusplus
 }
 #endif

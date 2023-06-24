@@ -1,2 +1,4 @@
-i2c.c:16:6:I2C1_Config	1
-i2c.c:29:6:I2C1_Master_Init	1
+i2c.c:18:6:I2C1_Master_Init	1
+i2c.c:34:6:I2C1_Start	3
+i2c.c:51:6:I2C1_Master_Write	3
+i2c.c:60:6:I2C1_Master_Read	3
