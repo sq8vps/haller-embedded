@@ -27,7 +27,7 @@ void I2C1_Master_Init(void){
 	I2C1->TIMINGR |= I2C_FREQ; 					//Set I2C1 speed frequency
 	I2C1->CR1 |= PE_EN;	 						//Enable I2C1
 
-	I2C1->CR2 |= AUTOEND_EN;						//Enable auto-end feature
+	I2C1->CR2 |= AUTOEND_EN;					//Enable auto-end feature
 	I2C1->CR2 &= ~ADD10;						//7-bit addressing mode
 }
 
@@ -35,16 +35,8 @@ void I2C1_Start(Direction dir, uint8_t addr, uint8_t size){
 	I2C1->CR2 &= 0x00; 							//Clear address. //Disc. CR2 bit0 is don't care
 	I2C1->CR2 |= addr<<1;						//Set slave address
 	I2C1->CR2 |= size<<16;						//Number of bytes to read/write
-	switch(dir){
-		case WRITE:
-			I2C1->CR2 &= ~(1<<10);				//Write request
-			break;
-		case READ:
-			I2C1->CR2 |= 1<<10;					//Read request
-			break;
-		default:
-			break;
-	}
+	if(dir == WRITE) I2C1->CR2 &= ~(1<<10);		//Write Request
+	else if (dir == READ) I2C1->CR2 |= 1<<10;	//Read request
 	I2C1->CR2 |= I2C_START;						//Start communication
 }
 
