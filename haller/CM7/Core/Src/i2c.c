@@ -32,7 +32,7 @@ void I2C1_Master_Init(void){
 }
 
 void I2C1_Start(Direction dir, uint8_t addr, uint8_t size){
-	I2C1->CR2 &= 0x00; 							//Clear address. //Disc. CR2 bit0 is don't care
+	I2C1->CR2 &= ~(0xFF); 						//Clear address. //Disc. CR2 bit0 is don't care
 	I2C1->CR2 |= addr<<1;						//Set slave address
 	I2C1->CR2 |= size<<16;						//Number of bytes to read/write
 	if(dir == WRITE) I2C1->CR2 &= ~(1<<10);		//Write Request
@@ -44,7 +44,7 @@ void I2C1_Master_Write(uint8_t addr, uint32_t *msg, uint8_t size){
 	I2C1_Start(WRITE, addr, size);
 	for(uint8_t stage=0;stage<size;stage++){	//Writing remaining bytes
 		while( !(I2C1->ISR & (1<<0) ) );
-		I2C1->TXDR = (*msg) & ( 0xFF<<(stage*8) );
+		I2C1->TXDR = (*msg)>>(stage*8) & 0xFF;
 	}
 	//Automatic end mode closes transmission after NBYTES are sent
 }
@@ -53,7 +53,7 @@ void I2C1_Master_Read(uint8_t addr, uint32_t *buf, uint8_t size){
 	I2C1_Start(READ, addr, size);
 	for(uint8_t stage=0;stage<size;stage++){	//Reading remaining bytes
 		while( !(I2C1->ISR & (1<<2) ) );
-		*buf = (I2C1->TXDR)<<(stage*8);
+		*buf |= (I2C1->TXDR)<<(stage*8);
 	}
 	//Automatic end mode closes transmission after NBYTES are read
 }

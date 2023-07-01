@@ -26,7 +26,6 @@ void I2C1_Master_Init(void);
  * @param[in]			- slave address
  * @param[in]			- pointer to the message buffer
  * @param[in]			- size of message in bytes
- * @param[in]			-
  *
  * @return				- none
  *
@@ -42,7 +41,6 @@ void I2C1_Master_Write(uint8_t addr, uint32_t *msg, uint8_t size);
  * @param[in]			- slave address
  * @param[in]			- pointer to the buffer where the data will be stored
  * @param[in]			- size of data to be read in bytes
- * @param[in]			-
  *
  * @return				- none
  *
@@ -57,7 +55,6 @@ void I2C1_Master_Read(uint8_t addr, uint32_t *buf, uint8_t size);
  *
  * @param[in]			- pointer to the message buffer
  * @param[in]			- size of message in bytes
- * @param[in]			-
  *
  * @return				- none
  *
