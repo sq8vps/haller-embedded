@@ -23,9 +23,9 @@ void I2C1_Master_Init(void);
  *
  * @brief				- Send up to 4 bytes to slave device of known address.
  *
- * @param[in]			- slave address
- * @param[in]			- pointer to the message buffer
- * @param[in]			- size of message in bytes
+ * @addr[in]			- slave address
+ * @msg[in]				- pointer to the message buffer
+ * @size[in]			- size of message in bytes
  *
  * @return				- none
  *
@@ -38,9 +38,9 @@ void I2C1_Master_Write(uint8_t addr, uint32_t *msg, uint8_t size);
  *
  * @brief				- Receive up to 4 bytes from slave device of known address.
  *
- * @param[in]			- slave address
- * @param[in]			- pointer to the buffer where the data will be stored
- * @param[in]			- size of data to be read in bytes
+ * @addr[in]			- slave address
+ * @buf[in]				- pointer to the buffer where the data will be stored
+ * @size[in]			- size of data to be read in bytes
  *
  * @return				- none
  *
@@ -53,8 +53,8 @@ void I2C1_Master_Read(uint8_t addr, uint32_t *buf, uint8_t size);
  *
  * @brief				- General call function, writing to all devices connected to i2c1 bus.
  *
- * @param[in]			- pointer to the message buffer
- * @param[in]			- size of message in bytes
+ * @data[in]			- pointer to the message buffer
+ * @size[in]			- size of message in bytes
  *
  * @return				- none
  *
